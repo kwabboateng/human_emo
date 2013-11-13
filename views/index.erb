@@ -1,12 +1,13 @@
 <!DOCTYPE html>
 <html xmlns:fb="http://ogp.me/ns/fb#" lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=2.0, user-scalable=yes" />
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=2.0, user-scalable=yes" />
 
-    <title><%= @app['name'] %></title>
-    <link rel="stylesheet" href="stylesheets/screen.css" media="Screen" type="text/css" />
-    <link rel="stylesheet" href="stylesheets/mobile.css" media="handheld, only screen and (max-width: 480px), only screen and (max-device-width: 480px)" type="text/css" />
+  <title><%= @app['name'] %></title>
+  <link rel="stylesheet" href="stylesheets/screen.css" media="Screen" type="text/css" />
+  <link rel="stylesheet" href="stylesheets/mobile.css" media="handheld, only screen and (max-width: 480px), only screen and (max-device-width: 480px)" type="text/css" />
+  <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,600' rel='stylesheet' type='text/css'>
 
     <!--[if IEMobile]>
     <link rel="stylesheet" href="mobile.css" media="screen" type="text/css"  />
@@ -27,7 +28,7 @@
 
     <script type="text/javascript" src="/javascripts/jquery-1.7.1.min.js"></script>
 
-     <script type="text/javascript">
+    <script type="text/javascript">
     //   function logResponse(response) {
     //     if (console && console.log) {
     //       console.log('The response was', response);
@@ -82,7 +83,7 @@
     //     });
     //   });
 
-    </script>
+</script>
 
     <!--[if IE]>
       <script type="text/javascript">
@@ -90,11 +91,11 @@
         while(tags.length)
           document.createElement(tags.pop());
       </script>
-    <![endif]-->
-  </head>
-  <body>
-    <div id="fb-root"></div>
-    <script type="text/javascript">
+      <![endif]-->
+    </head>
+    <body>
+      <div id="fb-root"></div>
+      <script type="text/javascript">
       window.fbAsyncInit = function() {
         FB.init({
           appId      : "<%= @app['id'] %>",                     // App ID
@@ -126,39 +127,43 @@
         js.src = "//connect.facebook.net/en_US/all.js";
         fjs.parentNode.insertBefore(js, fjs);
       }(document, 'script', 'facebook-jssdk'));
-    </script>
+      </script>
 
-<div id="wrap" class="Absolute-Center">
-    <header class=" ">
-
-      <% if @user %>
-                  
+      <div class="section1">
+        <header class="Absolute-Center">
+          <div class="last-wrap">
+          <% if @user %>
+            <h2 class="opener">Welcome, <span class=""><%= @user['name'] %></span></h2>
+            <div class="pic"><h3>Your Profile Picture</h3><img src="https://graph.facebook.com/<%= @user['id'] %>/picture?type=large" ></div>
+          <% else %>
           <div>
-            <h1>Welcome, <strong><%= @user['name'] %></strong></h1>
-            <img src="https://graph.facebook.com/<%= @user['id'] %>/picture?type=large" >
-
+            <h2 class="opener">Welcome</h2>
+            <div class="fb-login-button" data-scope="<%= FACEBOOK_SCOPE %>">Log In</div>
           </div>
-      <% else %>
-        <div>
-          <h1>Welcome</h1>
-          <div class="fb-login-button" data-scope="<%= FACEBOOK_SCOPE %>">Log In</div>
+          <% end %>
+        
 
+        <% if @user %>
+<!--         <section class="data Absolute-Center">
+ -->         <%face_check%>
+         <div class="results">
+         <h3>Expression analysis</h3>
+         <% @features.each do |key, value| %>
+          <p> <span class="red"><%= key.capitalize %></span> : <%= value['value'].capitalize %> with a <%= value['confidence'] %>% confidance level. </p>
+         
+         
+        <% end %>
         </div>
+        </header>
+       </div>
+<!--        </section>
+ -->     </div>
+     <% end %>
+     <div class="section2 ">
+      <div class="Absolute-Center">
+        <h2>Measuring Emotion</h2>
+      </div>
+    </div>
 
-      <% end %>
-    </header>
-
-    <% if @user %>
-    <section id="" class=" ">
-           <%face_check%>
-          <ul>
-            <% @features.each do |key, value| %>
-            <li> <%= key %> : <%= value['value'] %> (<%= value['confidence'] %>)% </li>
-            <% end %>
-          </ul>
-
-        </section>
-    <% end %>
-</div>
   </body>
-</html>
+  </html>

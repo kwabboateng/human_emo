@@ -27,60 +27,61 @@
 
     <script type="text/javascript" src="/javascripts/jquery-1.7.1.min.js"></script>
 
-    <script type="text/javascript">
-      function logResponse(response) {
-        if (console && console.log) {
-          console.log('The response was', response);
-        }
-      }
+     <script type="text/javascript">
+    //   function logResponse(response) {
+    //     if (console && console.log) {
+    //       console.log('The response was', response);
+    //     }
+    //   }
 
-      $(function(){
-        // Set up so we handle click on the buttons
-        $('#postToWall').click(function() {
-          FB.ui(
-            {
-              method : 'feed',
-              link   : $(this).attr('data-url')
-            },
-            function (response) {
-              // If response is null the user canceled the dialog
-              if (response != null) {
-                logResponse(response);
-              }
-            }
-          );
-        });
+    //   $(function(){
+    //     // Set up so we handle click on the buttons
+    //     $('#postToWall').click(function() {
+    //       FB.ui(
+    //         {
+    //           method : 'feed',
+    //           link   : $(this).attr('data-url')
+    //         },
+    //         function (response) {
+    //           // If response is null the user canceled the dialog
+    //           if (response != null) {
+    //             logResponse(response);
+    //           }
+    //         }
+    //       );
+    //     });
 
-        $('#sendToFriends').click(function() {
-          FB.ui(
-            {
-              method : 'send',
-              link   : $(this).attr('data-url')
-            },
-            function (response) {
-              // If response is null the user canceled the dialog
-              if (response != null) {
-                logResponse(response);
-              }
-            }
-          );
-        });
+    //     $('#sendToFriends').click(function() {
+    //       FB.ui(
+    //         {
+    //           method : 'send',
+    //           link   : $(this).attr('data-url')
+    //         },
+    //         function (response) {
+    //           // If response is null the user canceled the dialog
+    //           if (response != null) {
+    //             logResponse(response);
+    //           }
+    //         }
+    //       );
+    //     });
 
-        $('#sendRequest').click(function() {
-          FB.ui(
-            {
-              method  : 'apprequests',
-              message : $(this).attr('data-message')
-            },
-            function (response) {
-              // If response is null the user canceled the dialog
-              if (response != null) {
-                logResponse(response);
-              }
-            }
-          );
-        });
-      });
+    //     $('#sendRequest').click(function() {
+    //       FB.ui(
+    //         {
+    //           method  : 'apprequests',
+    //           message : $(this).attr('data-message')
+    //         },
+    //         function (response) {
+    //           // If response is null the user canceled the dialog
+    //           if (response != null) {
+    //             logResponse(response);
+    //           }
+    //         }
+    //       );
+    //     });
+    //   });
+
     </script>
 
     <!--[if IE]>
@@ -167,16 +168,17 @@
       <% end %>
     </header>
 
-    <section id="get-started">
+  <!--   <section id="get-started">
       <p>Welcome to your Facebook app, running on <span>heroku</span>!</p>
       <a href="https://devcenter.heroku.com/articles/facebook?utm_source=facebook&utm_medium=app&utm_campaign=fb_integration" target="_top" class="button">Learn How to Edit This App</a>
-    </section>
+    </section> -->
 
 
     <% if @user %>
     <section id="samples" class="clearfix">
           <h1>Examples of the Facebook Graph API</h1>
-
+          <% face_check("3d97fda.jpg") %>
+          <h1><%= @mood%> </h1>
           <div class="list">
             <h3>A few of your friends</h3>
             <ul class="friends">
@@ -235,7 +237,7 @@
     <% end %>
 
 
-    <section id="guides" class="clearfix">
+   <!--  <section id="guides" class="clearfix">
       <h1>Learn More About Heroku &amp; Facebook Apps</h1>
       <ul>
         <li>
@@ -261,6 +263,6 @@
           <p>Let users find and connect to their friends in mobile apps and games.</p>
         </li>
       </ul>
-    </section>
+    </section> -->
   </body>
 </html>

@@ -1,5 +1,8 @@
-require "sinatra"
+require 'rubygems' 
+require 'sinatra'
 require 'koala'
+require 'json'
+require 'face'
 
 enable :sessions
 set :raise_errors, false
@@ -65,9 +68,15 @@ error(Koala::Facebook::APIError) do
   redirect "/auth/facebook"
 end
 
+
+
+
+
+#############
 get "/" do
   # Get base API Connection
   @graph  = Koala::Facebook::API.new(access_token)
+  @client = Face.get_client(:api_key => 'ad8d512de5354372ba24ea2c328a58c1', :api_secret => '83b9c2f388614e03b2ba72d42fac0e7c')
 
   # Get public details of current application
   @app  =  @graph.get_object(ENV["FACEBOOK_APP_ID"])
@@ -77,6 +86,7 @@ get "/" do
     @friends = @graph.get_connections('me', 'friends')
     @photos  = @graph.get_connections('me', 'photos')
     @likes   = @graph.get_connections('me', 'likes').first(4)
+   # @profpic = @graph.get_picture(@user, 'large')
 
     # for other data you can always run fql
     @friends_using_app = @graph.fql_query("SELECT uid, name, is_app_user, pic_square FROM user WHERE uid in (SELECT uid2 FROM friend WHERE uid1 = me()) AND is_app_user = 1")
@@ -111,4 +121,17 @@ end
 get '/auth/facebook/callback' do
   session[:access_token] = authenticator.get_access_token(params[:code])
   redirect '/'
+end
+
+get '/logout' do
+  session[:authenticated] = false
+  redirect '/'
+end
+  
+def face_check(picture)
+  h  = @client.faces_detect(:file => File.new(picture, 'rb'), :attributes => 'all')
+  @features =  h['photos'][0]['tags'][0]['attributes']
+  @mood = @features['mood']['value']
+  #return @features
+
 end

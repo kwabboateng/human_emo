@@ -129,7 +129,7 @@ end
   
 def face_check
   # h  = @client.faces_detect(:file => File.new(picture, 'rb'), :attributes => 'all')
-  h  = @client.faces_detect(:urls => ['https://graph.facebook.com/#{@user['id']}/picture?type=large'], :attributes => 'all')
+  h  = @client.faces_detect(:urls => ['https://graph.facebook.com/#{@user.id}/picture?type=large'], :attributes => 'all')
   @features =  h['photos'][0]['tags'][0]['attributes']
   @mood = h['photos'][0]['tags'][0]['attributes']
 

@@ -86,7 +86,6 @@ get "/" do
     @friends = @graph.get_connections('me', 'friends')
     @photos  = @graph.get_connections('me', 'photos')
     @likes   = @graph.get_connections('me', 'likes').first(4)
-   # @profpic = @graph.get_picture(@user, 'large')
 
     # for other data you can always run fql
     @friends_using_app = @graph.fql_query("SELECT uid, name, is_app_user, pic_square FROM user WHERE uid in (SELECT uid2 FROM friend WHERE uid1 = me()) AND is_app_user = 1")
@@ -128,10 +127,10 @@ get '/logout' do
   redirect '/'
 end
   
-def face_check(picture)
-  h  = @client.faces_detect(:file => File.new(picture, 'rb'), :attributes => 'all')
+def face_check
+  # h  = @client.faces_detect(:file => File.new(picture, 'rb'), :attributes => 'all')
+  h  = @client.faces_detect(:urls => ['https://graph.facebook.com/#{@user['id']}/picture?type=large'], :attributes => 'all')
   @features =  h['photos'][0]['tags'][0]['attributes']
-  @mood = @features['mood']['value']
-  #return @features
+  @mood = h['photos'][0]['tags'][0]['attributes']
 
 end

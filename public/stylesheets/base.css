@@ -164,6 +164,7 @@ img{
     background-color: #32425c;
     height: auto;
     padding: 25px;
+    position: relative;
 
 }
 header {
@@ -176,10 +177,12 @@ header h1 {
 .section2{
   background-color: #ebeff2;
   color:#4d4d4d;
+  position: relative;
+  height: auto;
+  padding: 100px;
+  padding-top: 50px;
 }
-.section2 h2{
-  text-align: center;
-}
+
 .opener{
   padding-top: 25px;
   padding-bottom: 25px;
@@ -188,7 +191,7 @@ header h1 {
   width: auto;
   display: inline-block;
   position: relative;
-  margin-left: 200px;
+  margin-left: 210px;
 }
 .pic{
   width: auto;
@@ -200,7 +203,7 @@ header h1 {
   margin-top: 5px;
 }
 .last-wrap{
-  width: 55%;
+  width: 100%;
  margin: auto;
 top: 0; left: 0; bottom: 0; right: 0;
 
@@ -215,4 +218,13 @@ top: 0; left: 0; bottom: 0; right: 0;
   color: #e86c78;
   font-weight: bold;
 
+}
+.center {
+  
+   display: block;
+left: 0;
+position: relative;
+top: 0;
+width: 100%;
+z-index: 1;
 }

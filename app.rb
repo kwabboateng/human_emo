@@ -3,6 +3,8 @@ require 'sinatra'
 require 'koala'
 require 'json'
 require 'face'
+require 'debugger'
+require 'uri'
 
 enable :sessions
 set :raise_errors, false
@@ -47,6 +49,7 @@ helpers do
 
   def authenticator
     @authenticator ||= Koala::Facebook::OAuth.new(ENV["FACEBOOK_APP_ID"], ENV["FACEBOOK_SECRET"], url("/auth/facebook/callback"))
+
   end
 
   # allow for javascript authentication
@@ -78,6 +81,9 @@ get "/" do
   @graph  = Koala::Facebook::API.new(access_token)
   @client = Face.get_client(:api_key => 'ad8d512de5354372ba24ea2c328a58c1', :api_secret => '83b9c2f388614e03b2ba72d42fac0e7c')
 
+#debugger
+
+
   # Get public details of current application
   @app  =  @graph.get_object(ENV["FACEBOOK_APP_ID"])
 
@@ -86,6 +92,7 @@ get "/" do
     @friends = @graph.get_connections('me', 'friends')
     @photos  = @graph.get_connections('me', 'photos')
     @likes   = @graph.get_connections('me', 'likes').first(4)
+    @user_id = @user['id']
 
     # for other data you can always run fql
     @friends_using_app = @graph.fql_query("SELECT uid, name, is_app_user, pic_square FROM user WHERE uid in (SELECT uid2 FROM friend WHERE uid1 = me()) AND is_app_user = 1")
@@ -128,9 +135,9 @@ get '/logout' do
 end
   
 def face_check
-  # h  = @client.faces_detect(:file => File.new(picture, 'rb'), :attributes => 'all')
-  h  = @client.faces_detect(:urls => ['https://graph.facebook.com/#{@user.id}/picture?type=large'], :attributes => 'all')
+  #debugger
+   #h  = @client.faces_detect(:file => File.new('me.jpg', 'rb'), :attributes => 'all')
+ h  = @client.faces_detect(:urls => ['https://graph.facebook.com/'+@user_id+'/picture?type=large'], :attributes => 'all')
   @features =  h['photos'][0]['tags'][0]['attributes']
-  @mood = h['photos'][0]['tags'][0]['attributes']
 
 end

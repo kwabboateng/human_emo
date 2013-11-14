@@ -5,10 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=2.0, user-scalable=yes" />
 
   <title><%= @app['name'] %></title>
+  <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css" rel="stylesheet">
   <link rel="stylesheet" href="stylesheets/screen.css" media="Screen" type="text/css" />
   <link rel="stylesheet" href="stylesheets/mobile.css" media="handheld, only screen and (max-width: 480px), only screen and (max-device-width: 480px)" type="text/css" />
   <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,600' rel='stylesheet' type='text/css'>
-
     <!--[if IEMobile]>
     <link rel="stylesheet" href="mobile.css" media="screen" type="text/css"  />
     <![endif]-->
@@ -29,61 +29,8 @@
     <script type="text/javascript" src="/javascripts/jquery-1.7.1.min.js"></script>
 
     <script type="text/javascript">
-    //   function logResponse(response) {
-    //     if (console && console.log) {
-    //       console.log('The response was', response);
-    //     }
-    //   }
 
-    //   $(function(){
-    //     // Set up so we handle click on the buttons
-    //     $('#postToWall').click(function() {
-    //       FB.ui(
-    //         {
-    //           method : 'feed',
-    //           link   : $(this).attr('data-url')
-    //         },
-    //         function (response) {
-    //           // If response is null the user canceled the dialog
-    //           if (response != null) {
-    //             logResponse(response);
-    //           }
-    //         }
-    //       );
-    //     });
-
-    //     $('#sendToFriends').click(function() {
-    //       FB.ui(
-    //         {
-    //           method : 'send',
-    //           link   : $(this).attr('data-url')
-    //         },
-    //         function (response) {
-    //           // If response is null the user canceled the dialog
-    //           if (response != null) {
-    //             logResponse(response);
-    //           }
-    //         }
-    //       );
-    //     });
-
-    //     $('#sendRequest').click(function() {
-    //       FB.ui(
-    //         {
-    //           method  : 'apprequests',
-    //           message : $(this).attr('data-message')
-    //         },
-    //         function (response) {
-    //           // If response is null the user canceled the dialog
-    //           if (response != null) {
-    //             logResponse(response);
-    //           }
-    //         }
-    //       );
-    //     });
-    //   });
-
-</script>
+    </script>
 
     <!--[if IE]>
       <script type="text/javascript">
@@ -128,42 +75,41 @@
         fjs.parentNode.insertBefore(js, fjs);
       }(document, 'script', 'facebook-jssdk'));
       </script>
-
+    <div class="container">
       <div class="section1">
         <header class="Absolute-Center">
-          <div class="last-wrap">
-          <% if @user %>
+          <div class="last-wrap center">
+            <% if @user %>
             <h2 class="opener">Welcome, <span class=""><%= @user['name'] %></span></h2>
-            <div class="pic"><h3>Your Profile Picture</h3><img src="https://graph.facebook.com/<%= @user['id'] %>/picture?type=large" ></div>
-          <% else %>
-          <div>
-            <h2 class="opener">Welcome</h2>
-            <div class="fb-login-button" data-scope="<%= FACEBOOK_SCOPE %>">Log In</div>
-          </div>
-          <% end %>
-        
+            <div class="pic"><h3>Profile Picture</h3><img src="https://graph.facebook.com/<%= @user['id'] %>/picture?type=large" ></div>
+            <% else %>
+            <div>
+              <h2 class="opener">Welcome</h2>
+              <h3>This is my PSYC 131 Outreach project</h3>
+              <div class="fb-login-button" data-scope="<%= FACEBOOK_SCOPE %>">Log In</div>
+            </div>
+            <% end %>
 
-        <% if @user %>
-<!--         <section class="data Absolute-Center">
- -->         <%face_check%>
-         <div class="results">
-         <h3>Expression analysis</h3>
-         <% @features.each do |key, value| %>
-          <p> <span class="red"><%= key.capitalize %></span> : <%= value['value'].capitalize %> with a <%= value['confidence'] %>% confidance level. </p>
-         
-         
-        <% end %>
-        </div>
-        </header>
+            <% if @user %>
+            <%face_check%>
+            <div class="results ">
+             <h3>Expression Analysis</h3>
+             <% @features.each do |key, value| %>
+             <p> <span class="red"><%= key.capitalize %></span> : <%= value['value'].capitalize %> with a <%= value['confidence'] %>% confidance level. </p>
+
+             <% end %>
+           </div>
+         </header>
        </div>
-<!--        </section>
- -->     </div>
+     </div>
      <% end %>
      <div class="section2 ">
       <div class="Absolute-Center">
+       <div class="last-wrap center">
         <h2>Measuring Emotion</h2>
       </div>
     </div>
-
-  </body>
-  </html>
+  </div>
+</div>
+</body>
+</html>

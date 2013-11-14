@@ -80,64 +80,69 @@
           <header class="Absolute-Center">
             <div class="last-wrap center">
               <% if @user %>
-              <h2 class="opener">Facial Profiler, <span class=""><%= @user['name'].split(" ").first %></span></h2>
-              <div class="row">
-                <div class="pic col-sm-6"><h3>Profile Picture</h3><img class="center" src="https://graph.facebook.com/<%= @user['id'] %>/picture?type=large" ></div>
-                <% else %>
-                <h2 class="opener">Facial Profiler</h2>
-                 <div class="row">
-                <h3 id="tagline">Welcome! This is my PSYC 131 Outreach Project</h3>
-                <div class="col-xs-6 circular"></div>
-                <div class="col-sm-offset-2 col-xs-4"><p class="intro">My name is Kwabena Boateng and this is a Facebook app that analyzes your face.</p> 
-                <div class="fb-login-button" data-scope="<%= FACEBOOK_SCOPE %>">Log In</div>
-                </div>
+              <h2 class="opener">Facial Profiler<h2> 
+                <h2 class="">Welcome, <%= @user['name'].split(" ").first %>!</h2>
+                <div class="row">
+                  <%#face_check%>
+                  <%# if @features.length > 15%>
 
-                <% end %>
+                  <%#end%>
+                  <div class="pic col-sm-6"><h3>Profile Picture</h3><img class="center" src="https://graph.facebook.com/<%= @user['id'] %>/picture?type=large" ></div>
+                  <% else %>
+                  <h2 class="opener">Facial Profiler</h2>
+                  <div class="row">
+                    <h3 id="tagline">Welcome! This is my PSYC 131 Outreach Project</h3>
+                    <div class="col-xs-6 circular"></div>
+                    <div class="col-sm-offset-2 col-xs-4"><p class="intro">My name is Kwabena Boateng and this is a Facebook app that analyzes your face.</p> 
+                      <div class="fb-login-button" data-scope="<%= FACEBOOK_SCOPE %>">Log In</div>
+                    </div>
 
-                <% if @user %>
-                <%face_check%>
-                <div class="results col-sm-6">
-                 <h3>Expression Analysis</h3>
-                 <% @features.each do |key, value| %>
-                 <p> <span class="red"><%= key.capitalize %></span> : <%= value['value'].capitalize %> with a <%= value['confidence'] %>% confidance level. </p>
+                    <% end %>
 
-                 <% end %>
+                    <% if @user %>
+                    <%face_check%>
+                    <div class="results col-sm-6">
+                     <h3>Expression Analysis</h3>
+                     <% @features.each do |key, value| %>
+                     <p> <span class="red"><%= key.capitalize %></span> : <%= value['value'].capitalize %> with a <%= value['confidence'] %>% confidence level. </p>
+
+                     <% end %>
+                   </div>
+                   <% end %>
+                 </div>
                </div>
-               <% end %>
              </div>
-           </div>
+           </header>
          </div>
-         </header>
+
        </div>
-     
-      </div>
-     <div class="section2 ">
-      <div class="container">
-        <h2>Measuring Emotion</h2>
+       <div class="section2 ">
+        <div class="container">
+          <h2>Measuring Emotion</h2>
 
-        <div class="row">
-          <div class="col-xs-4">
-            <h3>Human Emotion</h3>
-            <p>
-              We all experience a diverse array of emotions. These feelings are triggered by various stimuli and often times result in physiological changes in the body. There are 6 basic emotions: Anger, disgust, fear, happiness, sadness, & surprise. According to psychologist Paul Ekman, an emotion is brief, unbidden, cross-species, coherent, fast, and are appraised automatically. Psychologists attempt to develop a concrete understanding of emotions through experimentation and observation.  
-            </p>
+          <div class="row">
+            <div class="col-xs-4">
+              <h3>Human Emotion</h3>
+              <p>
+                We all experience a diverse array of emotions. These feelings are triggered by various stimuli and often times result in physiological changes in the body. There are 6 basic emotions: Anger, disgust, fear, happiness, sadness, & surprise. According to psychologist Paul Ekman, an emotion is brief, unbidden, cross-species, coherent, fast, and are appraised automatically. Psychologists attempt to develop a concrete understanding of emotions through experimentation and observation.  
+              </p>
+            </div>
+            <div class="col-xs-4">
+              <h3>Facial Expression Analysis</h3>
+              <p>
+                Emotions are measured subjectively, behaviorly, and physiologically. A behavioral measure of emotion deals with the Facial Action Coding System. Developed by Ekman & Friesen in the 1970s, FACS categorize facial behaviors based on muscles that produce them. These movements are measured in Action Units (AU). Modern research has been with computers and the automatic analysis of facial expressions. <p>The ability to use a computer to analyze a person's face and therefore their emotion, saves a great deal of time (FACS takes 80-100 hours to train) and provides a wealth of data to allow us to better interpret expression and emotion.</p>
+              </p>
+            </div>
+            <div class="col-xs-4">
+              <h3>About This App</h3>
+              <p>
+                This application uses the Facebook Open Graph API to capture a user's facebook profile picture. This picture is then used with the Skybiometry Facial Detection and Recognition API to detect faces and analyze facial expressions. 
+              </p>
+            </div>
           </div>
-          <div class="col-xs-4">
-            <h3>Facial Expression Analysis</h3>
-            <p>
-              Emotions are measured subjectively, behaviorly, and physiologically. A behavioral measure of emotion deals with the Facial Action Coding System. Developed by Ekman & Friesen in the 1970s, FACS categorize facial behaviors based on muscles that produce them. These movements are measured in Action Units (AU). Modern research has been with computers and the automatic analysis of facial expressions. <p>The ability to use a computer to analyze a person's face and therefore their emotion, saves a great deal of time (FACS takes 80-100 hours to train) and provides a wealth of data to allow us to better interpret expression and emotion.</p>
-            </p>
-          </div>
-          <div class="col-xs-4">
-            <h3>About This App</h3>
-            <p>
-              This application uses the Facebook Open Graph API to capture a user's facebook profile picture. This picture is then used with the Skybiometry Facial Detection and Recognition API to detect faces and analyze facial expressions. 
-            </p>
-          </div>
+
         </div>
-
       </div>
-    </div>
 
-  </body>
-  </html>
+    </body>
+    </html>

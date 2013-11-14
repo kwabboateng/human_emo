@@ -136,6 +136,8 @@ end
   
 def face_check
   #debugger
+   #h  = @client.faces_detect(:urls => ['http://skybiometry.com/Content/Samples/five.jpg'], :attributes => 'all')
+
    #h  = @client.faces_detect(:file => File.new('me.jpg', 'rb'), :attributes => 'all')
  h  = @client.faces_detect(:urls => ['https://graph.facebook.com/'+@user_id+'/picture?type=large'], :attributes => 'all')
   @features =  h['photos'][0]['tags'][0]['attributes']

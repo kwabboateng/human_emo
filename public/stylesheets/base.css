@@ -39,7 +39,7 @@ h2 {
   line-height: 1;
   margin: 0;
   display: block;
-
+  text-align: center;
 }
 
 
@@ -182,22 +182,29 @@ header h1 {
   padding: 100px;
   padding-top: 50px;
 }
+.section2 h2{
+  text-align: center;
+  font-weight: 600;
+  margin-bottom: 25px; 
+}
+.section2 h3 {
 
+}
 .opener{
   padding-top: 25px;
   padding-bottom: 25px;
 }
 .results{
-  width: auto;
+  /*width: auto;
   display: inline-block;
   position: relative;
-  margin-left: 210px;
+  margin-left: 210px;*/
 }
 .pic{
-  width: auto;
+/*  width: auto;
   display: inline-block;
   position: absolute;
-  margin-right: 400px;
+  margin-right: 400px;*/
 }
 .pic img{
   margin-top: 5px;
@@ -208,7 +215,7 @@ header h1 {
 top: 0; left: 0; bottom: 0; right: 0;
 
 }
-.last-wrap h3{
+ h3{
   color: #607189;
   text-align: center;
   font-weight: 600;
